@@ -26,7 +26,7 @@
       </div>
 
       <div class="stats">
-        <div class="stat">
+        <div class="stat" id="time-stat">
           <span class="stat-label">Zeit</span>
           <span class="stat-value" id="time">0:00</span>
         </div>
@@ -34,15 +34,28 @@
           <span class="stat-label">Züge</span>
           <span class="stat-value" id="moves">0</span>
         </div>
+        <div class="stat" id="progress-stat" hidden>
+          <span class="stat-label">Verbunden</span>
+          <span class="stat-value" id="progress">0</span>
+        </div>
       </div>
 
-      <button class="btn-new" id="new-game">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 12a9 9 0 1 1-2.64-6.36" />
-          <path d="M21 3v6h-6" />
-        </svg>
-        Neues Spiel
-      </button>
+      <div class="actions">
+        <button class="btn-check" id="check-btn" hidden>Lösung prüfen</button>
+        <button class="btn-new" id="new-game">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12a9 9 0 1 1-2.64-6.36" />
+            <path d="M21 3v6h-6" />
+          </svg>
+          Neues Spiel
+        </button>
+        <button class="btn-icon" id="open-settings" aria-label="Einstellungen">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+        </button>
+      </div>
     </section>
 
     <section class="board-wrap">
@@ -62,9 +75,23 @@
     </section>
 
     <footer class="hint">
-      <span>Linksklick dreht im Uhrzeigersinn · Rechtsklick dagegen</span>
+      <span id="hint-text">Linksklick dreht im Uhrzeigersinn · Rechtsklick dagegen</span>
     </footer>
   </main>
+
+  <div class="settings-overlay" id="settings-overlay" hidden>
+    <aside class="settings-panel" role="dialog" aria-label="Einstellungen" aria-modal="true">
+      <header class="settings-head">
+        <h2>Einstellungen</h2>
+        <button class="settings-close" id="close-settings" aria-label="Schließen">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </header>
+      <div class="settings-list" id="settings-list"></div>
+    </aside>
+  </div>
 
   <script src="game.js"></script>
 </body>
