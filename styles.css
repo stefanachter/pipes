@@ -255,8 +255,8 @@ body {
 
 .pipe {
   position: relative;
-  width: 82%;
-  height: 82%;
+  width: 100%;
+  height: 100%;
   transition: transform 0.28s var(--ease);
   will-change: transform;
 }
@@ -435,22 +435,10 @@ body.sticky-toolbar .controls {
   box-shadow: inset 0 0 0 2px var(--accent-soft);
 }
 
-.pin-dot {
-  position: absolute;
-  top: 9%; right: 9%;
-  width: 16%; height: 16%;
-  max-width: 12px; max-height: 12px;
-  min-width: 6px; min-height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 2px var(--surface);
-  opacity: 0;
-  transform: scale(0.4);
-  transition: opacity 0.16s var(--ease), transform 0.16s var(--ease);
-  pointer-events: none;
+.cell.pinned::before {
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent);
 }
-.cell.pinned .pin-dot { opacity: 1; transform: scale(1); }
-.cell.pinned::before { background: color-mix(in srgb, var(--accent) 12%, transparent); }
 .cell.pinned { cursor: default; }
 
 /* Flood visualization delay is set inline per cell via --flood-delay */

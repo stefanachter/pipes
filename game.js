@@ -228,29 +228,23 @@ function hasWallEnd(i) {
 function buildSvg(cell, isSource) {
   const dirs = [...cell.base];
   const C = 50;
-  const tip = { 0: [50, 12], 1: [88, 50], 2: [50, 88], 3: [12, 50] };
-  const edge = { 0: [50, 4], 1: [96, 50], 2: [50, 96], 3: [4, 50] };
+  const edge = { 0: [50, 0], 1: [100, 50], 2: [50, 100], 3: [0, 50] };
 
   let svg = `<svg viewBox="0 0 100 100" fill="none">`;
-  svg += `<g stroke-width="11" stroke-linecap="round">`;
+  svg += `<g stroke-width="9" stroke-linecap="round">`;
 
   for (const d of dirs) {
     const [ex, ey] = edge[d];
     svg += `<line class="wire" x1="${C}" y1="${C}" x2="${ex}" y2="${ey}" />`;
   }
 
-  if (dirs.length === 1) {
-    const [tx, ty] = tip[dirs[0]];
-    svg += `<circle class="plug" cx="${tx}" cy="${ty}" r="8.5" stroke-width="4" />`;
-  }
-
   svg += `</g>`;
 
   if (isSource) {
-    svg += `<circle class="hub" cx="50" cy="50" r="15" />`;
-    svg += `<circle class="core" cx="50" cy="50" r="6.5" fill="#fff" />`;
+    svg += `<circle class="hub" cx="50" cy="50" r="16" />`;
+    svg += `<circle class="core" cx="50" cy="50" r="7" fill="#fff" />`;
   } else {
-    svg += `<circle class="hub" cx="50" cy="50" r="8" />`;
+    svg += `<circle class="hub" cx="50" cy="50" r="11" />`;
   }
   svg += `</svg>`;
   return svg;
@@ -274,11 +268,7 @@ function render() {
     pipe.innerHTML = buildSvg(cell, isSource);
     pipe.style.transform = `rotate(${cell.rot * 90}deg)`;
 
-    const dot = document.createElement('span');
-    dot.className = 'pin-dot';
-
     btn.appendChild(pipe);
-    btn.appendChild(dot);
     boardEl.appendChild(btn);
 
     cell.el = btn;
